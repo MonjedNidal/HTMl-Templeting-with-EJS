@@ -3,6 +3,7 @@ const path = require('path');
 const app = express();
 const redditData = require('./data.json');
 
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, '/views'));
@@ -39,6 +40,6 @@ app.get('/r/:subreddit', (req, res) => {
     }
 })
 
-app.listen(3030, () => {
+app.listen(8080, () => {
     console.log('Listening!');
 })
