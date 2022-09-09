@@ -32,10 +32,13 @@ app.get('/images', (req, res) => {
 app.get('/r/:subreddit', (req, res) => {
     const subreddit = req.params.subreddit;
     const data = redditData[subreddit];
-    console.dir(data);
-    res.render('subreddit', { subreddit });
+    if (data) {
+        res.render('subreddit', { ...data });
+    } else {
+        res.render('notfound', { subreddit });
+    }
 })
 
-app.listen(3000, () => {
+app.listen(3030, () => {
     console.log('Listening!');
 })
